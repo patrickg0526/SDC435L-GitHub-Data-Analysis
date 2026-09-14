@@ -5,7 +5,7 @@ patgon2554
 
 A Python application that integrates multiple NoSQL databases (and finally a relational database) with data from the [GitHub Archive](https://www.gharchive.org/) dataset, built over five weekly project parts: Redis, MongoDB, Cassandra, Neo4j, and SQLite.
 
-**Status:** Individual submission (no group has been assigned/formed yet).
+**Status:** Individual submission.
 
 ## Part 1: Redis Integration
 
@@ -45,4 +45,4 @@ CRUD operations on commit documents in the Commits collection, indexed by commit
 
 ### Next Goals
 
-Find or be assigned a project group and coordinate repository access and task division for Parts 3 through 5 (Cassandra, Neo4j, SQLite). Combine the Redis and MongoDB versions of the app behind one shared menu, letting the user pick a backend. Add automated tests for the CRUD operations instead of only manual verification.
+Continue building out Parts 3 through 5 (Cassandra, Neo4j, SQLite). Combine the Redis and MongoDB versions of the app behind one shared menu, letting the user pick a backend. Add automated tests for the CRUD operations instead of only manual verification.
