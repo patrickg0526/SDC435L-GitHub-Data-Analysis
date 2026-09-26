@@ -63,6 +63,26 @@ Install cassandra-driver, make sure the Cassandra service is running, then pytho
 
 CRUD operations on commit records in the Commits table, keyed by commit_hash, with author-based lookups using ALLOW FILTERING. Feature 1, programming language popularity: aggregates total bytes per language into a Languages table and displays the top N languages. Feature 2, a contributor's commit history: given an author's email, lists all of that author's commits found in the imported sample. Feature 3, commit activity visualization: given a repository name, prints an ASCII bar chart of commit counts per author for that repository. The top languages by total bytes match the Redis and MongoDB versions exactly, confirming consistent data handling across all three databases.
 
+## Part 4: Neo4j Integration
+
+`githubNeo4jApp.py` imports the same sample of GitHub Archive commit and language data into a local Neo4j graph database, performs CRUD operations on Commit nodes, and includes the same three analysis features rebuilt for Neo4j.
+
+### Dependencies
+
+Python 3.x. neo4j Python driver, installed via pip3 install neo4j. A running local Neo4j instance on 127.0.0.1:7687 (user neo4j, password password1).
+
+### Technology Requirements
+
+Linux environment (developed/tested on Ubuntu via WSL2) with Neo4j 5.26 installed and running. The GitHubArchive-Dataset folder (containing Commits.json and Languages.json) present alongside githubNeo4jApp.py.
+
+### Setup / Running
+
+Install the neo4j driver, make sure the Neo4j service is running, then python3 githubNeo4jApp.py. On startup, the app imports a sample of records (500 commits as Commit/Author/Repo nodes connected by AUTHORED and IN_REPO relationships, language stats from 5,000 repositories as Language nodes), then presents a menu.
+
+### Current Features
+
+CRUD operations on Commit nodes, matched by hash, with author-based lookups via the AUTHORED relationship. Feature 1, programming language popularity: aggregates total bytes per language into Language nodes and displays the top N languages. Feature 2, a contributor's commit history: given an author's email, lists all of that author's commits found in the imported sample. Feature 3, commit activity visualization: given a repository name, prints an ASCII bar chart of commit counts per author for that repository. The top languages by total bytes match the Redis, MongoDB, and Cassandra versions exactly, confirming consistent data handling across all four databases.
+
 ### Next Goals
 
-Continue building out Parts 4 and 5 (Neo4j, SQLite). Combine the Redis, MongoDB, and Cassandra versions of the app behind one shared menu, letting the user pick a backend. Add automated tests for the CRUD operations instead of only manual verification.
+Continue building out Part 5 (SQLite). Combine the Redis, MongoDB, Cassandra, and Neo4j versions of the app behind one shared menu, letting the user pick a backend. Add automated tests for the CRUD operations instead of only manual verification.
