@@ -5,7 +5,7 @@ patgon2554
 
 A Python application that integrates multiple NoSQL databases (and finally a relational database) with data from the [GitHub Archive](https://www.gharchive.org/) dataset, built over five weekly project parts: Redis, MongoDB, Cassandra, Neo4j, and SQLite.
 
-**Status:** Individual submission.
+**Status:** Individual submission. Project complete (Parts 1-5).
 
 ## Part 1: Redis Integration
 
@@ -83,6 +83,26 @@ Install the neo4j driver, make sure the Neo4j service is running, then python3 g
 
 CRUD operations on Commit nodes, matched by hash, with author-based lookups via the AUTHORED relationship. Feature 1, programming language popularity: aggregates total bytes per language into Language nodes and displays the top N languages. Feature 2, a contributor's commit history: given an author's email, lists all of that author's commits found in the imported sample. Feature 3, commit activity visualization: given a repository name, prints an ASCII bar chart of commit counts per author for that repository. The top languages by total bytes match the Redis, MongoDB, and Cassandra versions exactly, confirming consistent data handling across all four databases.
 
+## Part 5: SQLite Integration
+
+`githubSQLiteApp.py` imports the same sample of GitHub Archive commit and language data into a local SQLite database, performs CRUD operations on commit records, and includes the same three analysis features rebuilt for SQLite. This is the final part of the project.
+
+### Dependencies
+
+Python 3.x. The sqlite3 module is part of the Python standard library, so no additional install is required.
+
+### Technology Requirements
+
+Any environment with Python 3.x (developed/tested on Ubuntu via WSL2). The GitHubArchive-Dataset folder (containing Commits.json and Languages.json) present alongside githubSQLiteApp.py. No separate database server is needed; SQLite stores the database in a single local file (GitHubArchive.db).
+
+### Setup / Running
+
+python3 githubSQLiteApp.py. On startup, the app creates a local GitHubArchive.db file with Commits and Languages tables, imports a sample of records (2,000 commits, language stats from 5,000 repositories), then presents a menu.
+
+### Current Features
+
+CRUD operations on commit records in the Commits table, keyed by commit_hash, with author-based lookups. Feature 1, programming language popularity: aggregates total bytes per language into a Languages table and displays the top N languages. Feature 2, a contributor's commit history: given an author's email, lists all of that author's commits found in the imported sample. Feature 3, commit activity visualization: given a repository name, prints an ASCII bar chart of commit counts per author for that repository. The top languages by total bytes match the Redis, MongoDB, Cassandra, and Neo4j versions exactly, confirming consistent data handling across all five databases used in this project.
+
 ### Next Goals
 
-Continue building out Part 5 (SQLite). Combine the Redis, MongoDB, Cassandra, and Neo4j versions of the app behind one shared menu, letting the user pick a backend. Add automated tests for the CRUD operations instead of only manual verification.
+The five-part project is complete. If continued, next steps would be combining all five database backends behind one shared menu so the user can pick which one to use, and adding automated tests for the CRUD operations instead of only manual verification.
